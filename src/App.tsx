@@ -1,120 +1,112 @@
 function App() {
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <header style={styles.header}>
-          <h1 style={styles.title}>Web Tasarımı ve Programlama</h1>
-          <div style={styles.badge}>LAB-1</div>
-        </header>
+    /* <> (Fragment) kullanımı: React'te birden fazla ana elemanı döndürmek için şarttır */
+    <>
+      {/* 6.2: Klavye kullanıcıları için İçeriğe Atla bağlantısı */}
+      <a href="#main-content" className="skip-link">
+        Ana içeriğe atla
+      </a>
+
+      <header>
+        {/* 6.1: ARIA etiketi navigasyonun amacını belirtir */}
+        <nav aria-label="Ana Navigasyon">
+          <ul>
+            <li><a href="#hakkimda">Hakkımda</a></li>
+            <li><a href="#projeler">Projeler</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* 3: Sayfada tek bir ana içerik alanı olmalıdır */}
+      <main id="main-content">
+        {/* 5.1: Heading hiyerarşisi h1 ile başlar */}
+        <h1 style={{ textAlign: 'center', color: '#111827', marginBottom: '2rem' }}>
+          Abdullah Can Deliat Portfolyosu
+        </h1> 
         
-        <main style={styles.content}>
-          <div style={styles.infoBox}>
-            <p style={styles.label}>Öğrenci Bilgileri</p>
-            <h2 style={styles.name}>[Abdullah Can Deliat]</h2>
-            <p style={styles.studentId}>ID: [220542002]</p>
+        <section id="hakkimda">
+          <h2>Hakkımda</h2> 
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+            <figure style={{ margin: 0 }}>
+              {/* 5.2: Görsellerde açıklayıcı alt metin zorunludur */}
+              <img 
+                src="https://via.placeholder.com/150" 
+                alt="Abdullah Can Deliat'ın profesyonel profil fotoğrafı"
+                style={{ borderRadius: '50%', border: '4px solid #e5e7eb' }}
+              />
+              <figcaption style={{ textAlign: 'center', marginTop: '0.5rem', fontSize: '0.9rem' }}>
+                Yazılım Mühendisi Adayı
+              </figcaption>
+            </figure>
+            <p style={{ flex: 1, minWidth: '300px' }}>
+              Merhaba! Ben Abdullah. Modern web teknolojileriyle erişilebilir ve 
+              kullanıcı dostu arayüzler geliştirmeye odaklanıyorum.
+            </p>
           </div>
+        </section>
 
-          <div style={styles.statusBox}>
-            <span style={styles.dot}></span>
-            <p style={styles.statusText}>Vite + React + TypeScript Ortamı Hazır</p>
-          </div>
-        </main>
+        <section id="projeler">
+          <h2>Projelerim</h2>
+          <article style={{ borderLeft: '4px solid #2563eb', paddingLeft: '1rem' }}>
+            <h3>E-Ticaret Sitesi</h3> 
+            <p>React ve TypeScript kullanarak geliştirdiğim, tam erişilebilir bir alışveriş deneyimi.</p>
+          </article>
+        </section>
 
-        <footer style={styles.footer}>
-          <p>© 2024 Geliştirme Ortamı Kurulumu Başarıyla Tamamlandı</p>
-        </footer>
-      </div>
-    </div>
+        <section id="iletisim">
+          <h2>İletişim</h2>
+          <p>Benimle iletişime geçmek için aşağıdaki formu kullanabilirsiniz.</p>
+          {/* 8: Form doğrulaması için HTML5 öznitelikleri */}
+          <form noValidate>
+            <div style={{ marginBottom: '1rem' }}>
+              {/* 7.1: Label ve Input id üzerinden bağlanmalıdır */}
+              <label htmlFor="name" style={{ display: 'block', fontWeight: 'bold' }}>Ad Soyad</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required 
+                minLength={2} 
+                placeholder="Örn: Ahmet Yılmaz" 
+                style={{ width: '100%', padding: '0.5rem' }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '1rem' }}>
+              <label htmlFor="email" style={{ display: 'block', fontWeight: 'bold' }}>E-posta</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="ornek@mail.com" 
+                style={{ width: '100%', padding: '0.5rem' }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '1rem' }}>
+              <label htmlFor="message" style={{ display: 'block', fontWeight: 'bold' }}>Mesajınız</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows={4} 
+                required 
+                placeholder="Mesajınızı buraya yazın..."
+                style={{ width: '100%', padding: '0.5rem' }}
+              ></textarea>
+            </div>
+
+            <button type="submit" style={{ padding: '0.7rem 1.5rem', cursor: 'pointer' }}>Mesaj Gönder</button>
+          </form>
+        </section>
+      </main>
+
+      <footer>
+        <p style={{ textAlign: 'center' }}>&copy; 2025 Abdullah Can Deliat. Tüm hakları saklıdır.</p>
+      </footer>
+    </>
   );
 }
-
-// Görünümü güzelleştiren stil objeleri
-const styles: { [key: string]: React.CSSProperties } = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100vh',
-    backgroundColor: '#f0f2f5',
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    margin: 0,
-  },
-  card: {
-    backgroundColor: '#ffffff',
-    borderRadius: '15px',
-    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-    width: '400px',
-    padding: '30px',
-    textAlign: 'center',
-  },
-  header: {
-    borderBottom: '2px solid #f0f0f0',
-    paddingBottom: '20px',
-    marginBottom: '20px',
-  },
-  title: {
-    fontSize: '1.5rem',
-    color: '#1a73e8',
-    margin: 0,
-  },
-  badge: {
-    display: 'inline-block',
-    backgroundColor: '#e8f0fe',
-    color: '#1a73e8',
-    padding: '5px 15px',
-    borderRadius: '20px',
-    fontSize: '0.8rem',
-    fontWeight: 'bold',
-    marginTop: '10px',
-  },
-  content: {
-    textAlign: 'left',
-  },
-  infoBox: {
-    backgroundColor: '#f8f9fa',
-    padding: '15px',
-    borderRadius: '10px',
-    marginBottom: '20px',
-  },
-  label: {
-    fontSize: '0.75rem',
-    color: '#70757a',
-    textTransform: 'uppercase',
-    letterSpacing: '1px',
-    margin: '0 0 5px 0',
-  },
-  name: {
-    fontSize: '1.2rem',
-    color: '#202124',
-    margin: '0 0 5px 0',
-  },
-  studentId: {
-    fontSize: '1rem',
-    color: '#5f6368',
-    margin: 0,
-  },
-  statusBox: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-  },
-  dot: {
-    width: '10px',
-    height: '10px',
-    backgroundColor: '#34a853',
-    borderRadius: '50%',
-    display: 'inline-block',
-  },
-  statusText: {
-    fontSize: '0.9rem',
-    color: '#34a853',
-    margin: 0,
-  },
-  footer: {
-    marginTop: '30px',
-    fontSize: '0.7rem',
-    color: '#9aa0a6',
-  }
-};
 
 export default App;
