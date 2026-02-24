@@ -1,4 +1,4 @@
-# Web Tasarımı ve Programlama - LAB-1
+# Web Tasarımı ve Programlama - LAB-2
 
 Bu proje, modern web geliştirme araçları kullanılarak oluşturulmuş ilk React + TypeScript projesidir.
 
